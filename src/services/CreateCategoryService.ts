@@ -8,6 +8,7 @@ import { CategoryRequest } from "../types/types";
 export class CreateCategoryServce{
     @Post("")
     @Response<Error>(500, "Erro interno do servidor")
+    @Response<Error>(400, "Category alredy exists!")
     async execute(@Body() {name, description}:CategoryRequest): Promise<Category | Error>{
         const categoryRepository = AppDataSource.getRepository(Category);
 

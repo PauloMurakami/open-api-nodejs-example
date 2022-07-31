@@ -8,6 +8,7 @@ import { Post, Route, Tags, Body, Response, Request, Delete } from "tsoa";
 export class DeleteCategorySerivce {
     @Delete("{id}")
     @Response<Error>(500, "Erro interno do servidor")
+    @Response<Error>(400, "Category not found")
     async execute(@Request() id: string) {
         const categoryRepository = AppDataSource.getRepository(Category);
         if(!(await categoryRepository.findBy({id: id}))){
