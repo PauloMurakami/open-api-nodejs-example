@@ -4,11 +4,14 @@ export interface CategoryRequest {
     description: string
 }
 export interface CategoryUpdateRequest {
+    /**
+     * @ignore
+     */
     id: string,
     name: string,
     description: string
 }
-export interface VideoRequest  {
+export interface VideoRequest {
     name: string,
     description: string,
     duration: number,

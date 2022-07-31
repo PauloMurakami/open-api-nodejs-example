@@ -1,10 +1,13 @@
 import { AppDataSource } from "../db/dataSource";
 import { Category } from "../entities/Category";
 import { CategoryUpdateRequest } from "../types/types";
-import { verifyFields } from "../utils/verifyFields.utils";
-
+import { Put, Route, Tags, Body, Response, Request, Get } from "tsoa";
+@Route("categories")
+@Tags("Atualizar Categoria")
 export class UpdateCategoryService {
-    async execute({ id, name, description }: CategoryUpdateRequest): Promise<Category> {
+    @Put("{id}")
+    @Response<Error>(500, "Erro interno do servidor")
+    async execute(@Body(){ id, name, description }: CategoryUpdateRequest): Promise<Category> {
         // um breve exemplo de como não ter campos vazios em seu codigo fonte
         // verifyFields([id, name, description]);
 
