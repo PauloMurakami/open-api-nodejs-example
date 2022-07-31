@@ -1,0 +1,16 @@
+{
+    "entryFile": "src/server.ts",
+    "noImplicitAdditionalProperties": "throw-on-extras",
+    "spec": {
+      "outputDirectory": "dist/public",
+      "specVersion": 3,
+      "spec": {
+        "servers": [
+          {
+            "url": "http://localhost:3333/",
+            "description": "Ambiente Local"
+          }
+        ]
+      }
+    }
+  }
