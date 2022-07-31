@@ -2,9 +2,16 @@ import { AppDataSource } from "../db/dataSource";
 import { Category } from "../entities/Category";
 import { Video } from "../entities/Video";
 import { VideoRequest } from "../types/types";
+import { Post, Route, Tags, Body, Response, Request, Get } from "tsoa";
 
+@Route("videos")
+@Tags("Cadastrar Video")
 export class CreateVideoServce {
-    async execute({ name, description, duration, category_id }: VideoRequest) {
+    @Post("")
+    @Response<Error>(500, "Erro interno do servidor")
+    @Response<Error>(500, "Video name being used!")
+    @Response<Error>(500, "Category Does not exists!")
+    async execute(@Body() { name, description, duration, category_id }: VideoRequest) {
         const videoRepository = AppDataSource.getRepository(Video);
         const categoryRepository = AppDataSource.getRepository(Category);
         if ((await videoRepository.findOne({ where: { name: name } }))) {
